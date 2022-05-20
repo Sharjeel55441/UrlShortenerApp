@@ -6,17 +6,21 @@
           <h1 class="text-info text-center">Wellcome URL Shortner</h1>
         </div>
         <div class="card-body">
-          <form #form="ngForm" (submit)="onSendRequest()">
-            <div class="input-group mb-3">
-              <input type="url" class="form-control" #baseUrl placeholder="www.google.com etc url paste...."
+          <form #form="ngForm" (submit)="onSendRequest(form)">
+            <div class="input-group  shadow-lg p-3 mb-5 bg-white rounded">
+              <input type="url" class="form-control" #baseUrl placeholder="Plaese enter url"
                [(ngModel)]="url.fullUrl" id="name" name="fullUrl"
+               #urlInput="ngModel"
                 aria-label="URL Shortner"  aria-describedby="basic-addon2"  pattern="https?://.+" required>
+
               <div class="input-group-append">
-                <button class="btn btn-outline-primary" type="button" (click)="onSendRequest()" [disabled]="!form.valid">Make Short URL</button>
+                <button  class="btn btn-outline-primary" type="button" (click)="onSendRequest(form)">Make Short URL</button>
               </div>
             </div>
+            <div class="text-danger" *ngIf="urlInput.touched && !urlInput.valid">
+              Please Enter Valid URL Like:(https://www.domain.name.com) etc.
+            </div>
           </form>
-
             <div class="mt-5">
               <div class="shadow-lg p-3 mb-5 bg-white rounded text-info ">Full URL:{{url?.fullUrl}}</div>
             <div class="shadow-lg p-3 mb-5 bg-white rounded text-info ">From API Full URL:<a href={{getShortUrl?.fullUrl}}  target="_blank">{{getShortUrl?.fullUrl}}</a>
@@ -25,13 +29,23 @@
               </div>
             </div>
 
-            <div class="shadow-lg p-3 mb-5 bg-white rounded text-info ">From API Short URL:<a href={{getShortUrl?.fullUrl}} target="_blank">{{getShortUrl?.shortUrl}}</a>
+            <div class="shadow-lg p-3 mb-5 bg-white rounded text-info ">From API Short URL:<a href="{{getShortUrl?.shortUrl}}" target="_blank">{{getShortUrl?.shortUrl.slice(20)}}</a>
               <div *ngIf="loader" class="spinner-border float-right" role="status">
                 <span class="sr-only">Loading...</span>
               </div>
             </div>
+            <div *ngIf="getShortUrl" class="cards shadow-lg p-3 mb-5 mt-5 bg-white rounded text-info ">
+              <h1 class="text-info text-center mb-5">Current Session</h1>
+              <div class="p-2 border border-info shadow-lg p-3 mb-5  rounded">
+              Choose Your Recently Short URL:<a href="{{getShortUrl?.shortUrl}}" target="_blank"><span class="ml-2">{{getShortUrl?.shortUrl.slice(20)}}</span></a>
+              </div>
+              <div class="p-2 border border-info shadow-lg p-3 mb-3  rounded">
+                Choose Your Recently Full URL:<a href="{{getShortUrl?.shortUrl}}" target="_blank"><span class="ml-2">{{getShortUrl?.fullUrl}}</span></a>
+                </div>
+            </div>
 
             </div>
+
 
         </div>
 

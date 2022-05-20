@@ -20,6 +20,8 @@
     "@angular/platform-browser-dynamic": "~13.3.0",
     "@angular/router": "~13.3.0",
     "@sweetalert2/ngx-sweetalert2": "^11.0.0",
+    "moment": "^2.29.3",
+    "ng-tiny-url": "^1.0.2",
     "rxjs": "~7.5.0",
     "sweetalert2": "^11.4.14",
     "tslib": "^2.3.0",

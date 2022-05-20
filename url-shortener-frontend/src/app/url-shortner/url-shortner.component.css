@@ -1,3 +1,11 @@
 .shortUrl {
   margin-left: 600px;
 }
+.cards {
+  height: 100%;
+  width: 100%;
+}
+.setShortUrl {
+  padding: 10px;
+
+}

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ public baseUrl="http://localhost:5000/api/"
   postUrl(data:any):Observable<any> {
    return this.http.post(`${this.baseUrl}`,data);
   };
-  public getShortUrl(shortUrl:any):Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}shorturl/${shortUrl}`);
+  public getShortUrl(id:any):Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}url/${id}`);
   }
 }

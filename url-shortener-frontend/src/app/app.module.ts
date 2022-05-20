@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UrlShortnerComponent } from './url-shortner/url-shortner.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-
+import {NgTinyUrlModule} from 'ng-tiny-url';
 
 @NgModule({
   declarations: [
@@ -19,6 +19,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgTinyUrlModule,
     SweetAlert2Module.forRoot()
   ],
   providers: [],

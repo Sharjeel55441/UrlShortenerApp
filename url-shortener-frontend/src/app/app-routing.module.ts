@@ -4,7 +4,8 @@ import { UrlShortnerComponent } from './url-shortner/url-shortner.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/url-shortner',pathMatch:'full'},
-  {path:'url-shortner',component:UrlShortnerComponent}
+  {path:'url-shortner',component:UrlShortnerComponent},
+  {path:'short-url',redirectTo:'/',pathMatch:'full'}
 ];
 
 @NgModule({

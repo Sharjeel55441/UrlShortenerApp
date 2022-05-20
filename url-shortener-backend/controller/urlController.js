@@ -1,9 +1,8 @@
-const shortid = require('shortid');
 const UrlModel = require('../model/shortUrl');
 
 exports.postUrl=async(req,res,next) =>{
     try{
-    let fullUrl = req.body.fullUrl;
+    let fullUrl = req.body;
         let postUrl = await UrlModel.create(fullUrl);
         if(postUrl) {
             return res.status(200).json({
@@ -25,10 +24,9 @@ exports.postUrl=async(req,res,next) =>{
 };
 exports.getShortUrl = async (req,res,next) => {
 try{
-    let url = req.params.shortUrl;
-    const shortUrl = await UrlModel.fetchById(url);
-    const sUrl = shortUrl;
-    if (sUrl) {
+    let url = req.params._id;
+    const shortUrl = await UrlModel.fetchByUrl(url);
+    if (shortUrl) {
         return res.status(200).json({
             message:'Short URL Fetched Successfully....',
             hasError:false,

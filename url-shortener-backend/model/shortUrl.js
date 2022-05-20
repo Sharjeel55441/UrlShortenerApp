@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const shortid = require('shortid');
 const ShortUrl =new Schema({
     fullUrl:{
         type:String,
@@ -8,11 +7,16 @@ const ShortUrl =new Schema({
     },
     shortUrl:{
         type:String,
-
-        default:shortid.generate
+        required:true
     },
-    shortClick:Number
-});
+    // createDate: {
+    //     type:Date
+    // }
+    
+},{
+    timestamps:true
+}
+);
 
 const ShortUrlModel = mongoose.model("UrlShortener",ShortUrl);
 module.exports = {
@@ -20,7 +24,9 @@ module.exports = {
     create: async(body) =>{
         try{
             let url = await ShortUrlModel.create({
-                fullUrl:body ? body : ''
+                fullUrl:body.full ? body.full : '',
+                shortUrl:body.short ? body.short : '',
+                // createDate:new Date
             });
             return url;
 
@@ -28,9 +34,9 @@ module.exports = {
             console.log("=============Url model error================",error);
         }
     },
-    fetchById: async (body) =>{
+    fetchByUrl: async (data) =>{
         try{
-            let url = await ShortUrlModel.findOne({shortUrl:body})
+            let url = await ShortUrlModel.findById({_id:data});
             return url;
 
         }catch(error) {
